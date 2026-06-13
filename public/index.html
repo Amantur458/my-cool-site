@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Мои Секретные Заметки</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Экран входа -->
+    <div id="loginScreen" class="container">
+        <h1>Вход</h1>
+        <input type="password" id="passInput" placeholder="Введите пароль">
+        <button id="loginBtn">Войти</button>
+    </div>
+
+    <!-- Экран приложения -->
+    <div id="appScreen" class="container" style="display: none;">
+        <div class="header">
+            <h1>Заметки</h1>
+            <button id="themeToggle">🌙</button>
+        </div>
+        <div class="input-group">
+            <input type="text" id="userInput" placeholder="Что нового?">
+            <button id="sendBtn">✚</button>
+        </div>
+        <ul id="messageList"></ul>
+        <button onclick="logout()" class="logout-btn">Выйти</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
