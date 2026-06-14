@@ -3,10 +3,13 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
+// Правильные пути для Vercel
 const FILE_PATH = path.join(__dirname, '..', 'data.json'); 
+const PUBLIC_PATH = path.join(__dirname, '..', 'public');
 const ADMIN_PASSWORD = "1234"; 
 
-app.use(express.static('public'));
+// Указываем серверу, где лежат картинки, стили и скрипты
+app.use(express.static(PUBLIC_PATH));
 app.use(express.json());
 
 const readNotes = () => {
@@ -29,6 +32,12 @@ const writeNotes = (notes) => {
 
 const checkAuth = (req) => req.headers['authorization'] === ADMIN_PASSWORD;
 
+// ГЛАВНЫЙ МАРШРУТ: Показываем index.html при открытии сайта
+app.get('/', (req, res) => {
+    res.sendFile(path.join(PUBLIC_PATH, 'index.html'));
+});
+
+// API Маршруты
 app.post('/api/login', (req, res) => {
     if (req.body.password === ADMIN_PASSWORD) res.json({ success: true });
     else res.status(401).json({ success: false });
@@ -72,4 +81,3 @@ if (process.env.NODE_ENV !== 'production') {
     const PORT = 3000;
     app.listen(PORT, () => console.log(`Сервер: http://localhost:${PORT}`));
 }
-//fix path
