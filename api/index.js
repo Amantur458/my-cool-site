@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
-const FILE_PATH = path.join(process.cwd(), 'data.json'); 
+const FILE_PATH = path.join(__dirname, '..', 'data.json'); 
 const ADMIN_PASSWORD = "1234"; 
 
 app.use(express.static('public'));
@@ -72,3 +72,4 @@ if (process.env.NODE_ENV !== 'production') {
     const PORT = 3000;
     app.listen(PORT, () => console.log(`Сервер: http://localhost:${PORT}`));
 }
+//fix path
